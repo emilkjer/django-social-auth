@@ -7,6 +7,7 @@ from social_auth.db.base import UserSocialAuthMixin, AssociationMixin, \
 from social_auth.fields import JSONField
 from social_auth.utils import setting
 
+# HACK BY EMIL
 from k3.customers.models import Customer
 
 # If User class is overridden, it *must* provide the following fields
