@@ -7,6 +7,7 @@ from social_auth.db.base import UserSocialAuthMixin, AssociationMixin, \
 from social_auth.fields import JSONField
 from social_auth.utils import setting
 
+from k3.customers.models import Customer
 
 # If User class is overridden, it *must* provide the following fields
 # and methods work with django-social-auth:
@@ -24,7 +25,10 @@ UID_LENGTH = setting('SOCIAL_AUTH_UID_LENGTH', 255)
 
 class UserSocialAuth(models.Model, UserSocialAuthMixin):
     """Social Auth association model"""
-    user = models.ForeignKey(USER_MODEL, related_name='social_auth')
+    # HACK BY EMIL
+    # user = models.ForeignKey(USER_MODEL, related_name='social_auth')
+    user = models.ForeignKey(Customer, related_name='social_auth')
+
     provider = models.CharField(max_length=32)
     uid = models.CharField(max_length=UID_LENGTH)
     extra_data = JSONField(default='{}')
